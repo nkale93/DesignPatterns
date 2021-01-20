@@ -94,7 +94,7 @@ namespace FactoryMethod
         private float CalculateValue()
         {
             float value = MathF.Round(((Rating / 50.0f) + (Weight / 100.0f)) / 2 * 100.0f, 2);
-
+ 
             return value;
         }
     }
