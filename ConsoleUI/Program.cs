@@ -16,7 +16,7 @@ namespace ConsoleUI
             while (true)
             {
                 Console.WriteLine("Select From Below");
-                Console.WriteLine("[1][Factory Method] Create Random Weapons");
+                Console.WriteLine("[1][Factory Method] Craft Random Weapons");
                 Console.Write("Selection: ");
                 ConsoleKeyInfo selection = Console.ReadKey();
 
