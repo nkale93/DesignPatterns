@@ -21,7 +21,7 @@ namespace FactoryMethod
                 return null;
             }
         }
-
+ 
         private ICraftedEquipment GetItem(EquipmentType equipmentType)
         {
             return new CraftedEquipment(equipmentType);
