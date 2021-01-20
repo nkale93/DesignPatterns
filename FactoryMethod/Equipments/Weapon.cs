@@ -9,7 +9,7 @@
         private readonly float weight;
         private readonly float value;
 
-        public Weapon(IItem equipment)
+        public Weapon(ICraftedEquipment equipment)
         {
             this.equipmentType = equipment.EquipmentType;
             this.id = equipment.Id;
