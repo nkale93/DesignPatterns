@@ -7,7 +7,7 @@ namespace FactoryMethod
     public interface IEquipment
     {
         string GetInfo();
-
+ 
         float GetValue();
     }
 }
