@@ -14,15 +14,15 @@ namespace ConsoleUI
 
         private void FactoryMethod()
         {
-            FactoryManager factoryManager = new FactoryManager();
+            FactoryMethodManager factoryManager = new FactoryMethodManager();
             List<IEquipment> equipments = new List<IEquipment>();
             float money = 0;
             bool create = true;
 
             while (create)
             {
-                Console.WriteLine("[1] Create Weapon\n" +
-                                  "[2] Create Armour\n" +
+                Console.WriteLine("[1] Craft Weapon\n" +
+                                  "[2] Craft Armour\n" +
                                   "[3] Show Bag\n" +
                                   "[4] Show Money\n" +
                                   "[5] Sell All\n\n" +
@@ -71,7 +71,7 @@ namespace ConsoleUI
             Console.Clear();
         }
 
-        private void GetEquipment(List<IEquipment> equipments, FactoryManager factoryManager)
+        private void GetEquipment(List<IEquipment> equipments, FactoryMethodManager factoryManager)
         {
             Console.Clear();
 
@@ -82,7 +82,7 @@ namespace ConsoleUI
             equipments.Add(weapon);
         }
 
-        private void GetArmour(List<IEquipment> equipments, FactoryManager factoryManager)
+        private void GetArmour(List<IEquipment> equipments, FactoryMethodManager factoryManager)
         {
             Console.Clear();
 
