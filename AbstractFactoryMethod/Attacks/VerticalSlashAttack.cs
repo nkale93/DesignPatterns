@@ -8,7 +8,7 @@ namespace AbstractFactoryMethod
         {
             Random random = new Random();
 
-            int damage = random.Next(1, maxDamage);
+            int damage = random.Next(maxDamage);
 
             return damage;
         }

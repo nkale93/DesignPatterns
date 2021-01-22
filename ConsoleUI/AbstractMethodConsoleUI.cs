@@ -98,6 +98,8 @@ namespace ConsoleUI
             Random random = new Random();
             bool alive = true;
             bool enemyAttacking = false;
+            bool wrongButton = false;
+            bool triedDef = false;
             int userDamage = 0;
             bool userDefended = false;
             bool enemyDefended = false;
@@ -136,20 +138,24 @@ namespace ConsoleUI
                     case ConsoleKey.D4:
                         userDefended = (defenseMode.GetData(DefenseType.NormalDefense).DataItem as IDefense).
                             GetDefense((DefenseType)random.Next((int)Enum.GetValues(typeof(DefenseType)).Cast<DefenseType>().Max()) + 1);
+                        triedDef = true;
                         break;
 
                     case ConsoleKey.D5:
                         userDefended = (defenseMode.GetData(DefenseType.VerticalDefense).DataItem as IDefense).
                             GetDefense((DefenseType)random.Next((int)Enum.GetValues(typeof(DefenseType)).Cast<DefenseType>().Max()) + 1);
+                        triedDef = true;
                         break;
 
                     case ConsoleKey.D6:
                         userDefended = (defenseMode.GetData(DefenseType.HorizontalDefense).DataItem as IDefense).
                             GetDefense((DefenseType)random.Next((int)Enum.GetValues(typeof(DefenseType)).Cast<DefenseType>().Max()) + 1);
+                        triedDef = true;
                         break;
 
                     default:
                         Console.WriteLine("You did nothing...");
+                        wrongButton = true;
                         break;
                 }
 
@@ -162,6 +168,11 @@ namespace ConsoleUI
                             Cast<AttackType>().Max()) + 1).DataItem as IAttack).
                             Damage((int)enemyEquipment.GetRating());
                         userHealthPoint -= enemyDamage;
+
+                        if (triedDef)
+                        {
+                            Console.WriteLine($"You failed to block { enemyName }'s attack");
+                        }
                         Console.WriteLine($"{ enemyName } landed { enemyDamage } damage to you.");
                     }
                     else
@@ -177,24 +188,34 @@ namespace ConsoleUI
                 }
                 else
                 {
-                    // enemy try to defense
-                    if (random.Next(100) < 25)
+                    if (userDamage > 0)
                     {
-                        enemyDefended = (defenseMode.GetData((DefenseType)random.
-                            Next((int)Enum.GetValues(typeof(DefenseType)).Cast<DefenseType>().Max()) + 1).
-                            DataItem as IDefense).
-                            GetDefense((DefenseType)random.
-                            Next((int)Enum.GetValues(typeof(DefenseType)).Cast<DefenseType>().Max()) + 1);
-                    }
+                        // enemy tries to defense
+                        if (random.Next(100) < 25)
+                        {
+                            enemyDefended = (defenseMode.GetData((DefenseType)random.
+                                Next((int)Enum.GetValues(typeof(DefenseType)).Cast<DefenseType>().Max()) + 1).
+                                DataItem as IDefense).
+                                GetDefense((DefenseType)random.
+                                Next((int)Enum.GetValues(typeof(DefenseType)).Cast<DefenseType>().Max()) + 1);
+                        }
 
-                    if (!enemyDefended)
-                    {
-                        enemyHealyPoint -= userDamage;
-                        Console.WriteLine($"You landed { enemyName } to { userDamage } damage");
+                        if (!enemyDefended)
+                        {
+                            enemyHealyPoint -= userDamage;
+                            Console.WriteLine($"You landed { enemyName } to { userDamage } damage");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{ enemyName } managed to block your attack");
+                        }
                     }
                     else
                     {
-                        Console.WriteLine($"{ enemyName } managed to block your attack");
+                        if (!wrongButton)
+                        {
+                            Console.WriteLine("You made an defense move but it was meaningless...");
+                        }
                     }
                 }
 
@@ -204,6 +225,7 @@ namespace ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine($"{ userName } Died");
+                    Console.WriteLine("...GAME OVER...");
                     alive = false;
                     Console.ReadLine();
                     Console.Clear();
@@ -211,7 +233,7 @@ namespace ConsoleUI
                 if (enemyHealyPoint <= 0)
                 {
                     Console.Clear();
-                    Console.WriteLine($"You killed { enemyName }");
+                    Console.WriteLine($"{ userName } killed { enemyName }");
                     Console.WriteLine($"...CONGRUCULATIONS...");
                     alive = false;
                     Console.ReadLine();
@@ -220,6 +242,8 @@ namespace ConsoleUI
 
                 userDamage = 0;
                 userDefended = false;
+                triedDef = false;
+                wrongButton = false;
                 enemyAttacking = !enemyAttacking;
             }
         }
