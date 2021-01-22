@@ -1,6 +1,6 @@
 ﻿namespace FactoryMethod
 {
-    public class Armour : IEquipment
+    internal class Armour : IEquipment
     {
         private readonly EquipmentType equipmentType;
         private readonly int id;
@@ -22,6 +22,16 @@
         public string GetInfo()
         {
             return $"{ itemName } \nDefense rating: { defenseRating }\nWeight: { weight } kg\nValue: { value }$";
+        }
+
+        public string GetName()
+        {
+            return itemName;
+        }
+
+        public float GetRating()
+        {
+            return defenseRating;
         }
 
         public float GetValue()

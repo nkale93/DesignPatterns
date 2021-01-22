@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AbstractFactoryMethod\AbstractFactoryMethod.csproj" />
     <ProjectReference Include="..\FactoryMethod\FactoryMethod.csproj" />
   </ItemGroup>
 
