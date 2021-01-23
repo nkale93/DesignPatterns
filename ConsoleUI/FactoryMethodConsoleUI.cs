@@ -1,4 +1,5 @@
-﻿using FactoryMethod;
+﻿using ConsoleUILibrary;
+using FactoryMethod;
 using System;
 using System.Collections.Generic;
 
@@ -6,12 +7,9 @@ namespace ConsoleUI
 {
     internal class FactoryMethodConsoleUI
     {
-        public FactoryMethodConsoleUI()
-        {
-            FactoryMethod();
-        }
+        private EasyCW cw = new EasyCW();
 
-        private void FactoryMethod()
+        public void FactoryMethod()
         {
             FactoryMethodManager factoryManager = new FactoryMethodManager();
             List<IEquipment> equipments = new List<IEquipment>();
@@ -20,12 +18,17 @@ namespace ConsoleUI
 
             while (create)
             {
-                Console.WriteLine("[1] Craft Weapon\n" +
-                                  "[2] Craft Armour\n" +
-                                  "[3] Show Bag\n" +
-                                  "[4] Show Money\n" +
-                                  "[5] Sell All\n\n" +
-                                  "[0] Main Menu [9] Exit\n");
+                string[] menu =
+                {
+                    "[1] Craft Weapon",
+                    "[2] Craft Armour",
+                    "[3] Show Bag",
+                    "[4] Show Money",
+                    "[5] Sell All",
+                    "",
+                    "[0] Main Menu [9] Exit"
+                };
+                cw.CWStringArray(menu);
                 Console.Write("Selection: ");
                 ConsoleKeyInfo selection = Console.ReadKey();
 

@@ -38,5 +38,10 @@
         {
             return value;
         }
+
+        public float GetWeight()
+        {
+            return weight;
+        }
     }
 }

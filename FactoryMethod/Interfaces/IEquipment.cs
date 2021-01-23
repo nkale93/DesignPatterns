@@ -12,6 +12,8 @@ namespace FactoryMethod
 
         float GetValue();
 
+        float GetWeight();
+
         float GetRating();
     }
 }

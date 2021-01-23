@@ -35,17 +35,30 @@ namespace ConsoleUI
                 {
                     case ConsoleKey.D1:
                         Console.Clear();
-                        _ = new FactoryMethodConsoleUI();
+                        FactoryMethod();
                         selected = true;
                         break;
 
                     case ConsoleKey.D2:
                         Console.Clear();
-                        _ = new AbstractMethodConsoleUI();
+                        AbstractFactoryMethod();
                         selected = true;
                         break;
                 }
             } while (!selected);
+        }
+
+        private static void AbstractFactoryMethod()
+        {
+            AbstractMethodConsoleUI abstractMethodConsoleUI = new AbstractMethodConsoleUI();
+            abstractMethodConsoleUI.CreateCharacter();
+            abstractMethodConsoleUI.SimulateBattle();
+        }
+
+        private static void FactoryMethod()
+        {
+            FactoryMethodConsoleUI factoryMethodConsoleUI = new FactoryMethodConsoleUI();
+            factoryMethodConsoleUI.FactoryMethod();
         }
     }
 }
